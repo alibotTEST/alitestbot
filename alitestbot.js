@@ -170,6 +170,20 @@ ${prefix}bc : ل إرسال رسالة لجمع الاعضاء
 
 ${prefix}email : لإنشاء حساب وهمي
 
+       **==========================**
+
+${prefix}setname
+${prefix}stream
+${prefix}playing
+${prefix}listen
+${prefix}watch
+${prefix}setavatar
+${prefix}online
+${prefix}idle
+${prefix}invisible
+${prefix}dnd
+
+
  
 **`)
     message.channel.send(`✅ | Done | <@${message.author.id}>`)
