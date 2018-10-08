@@ -161,6 +161,24 @@ client.on('message', function(message) {
 
 
 client.on('message', message => {
+    if (!message.guild) return; 
+    if (message.content.startsWith("رابط")) {
+
+        message.channel.createInvite({
+        thing: true,
+        maxUses: 3,
+        maxAge: 86400
+    }).then(invite =>
+      message.author.sendMessage(invite.url)
+    )
+  message.channel.send(`** تم أرسال الرابط برسالة خاصة **`)
+
+      message.author.send(`**هذا الرابط ل3 أشخاص واحد و لمدة 24 ساعة **`)
+    }
+});
+
+
+client.on('message', message => {
     if (message.author.bot) return; 
  if(message.content == "!help"){
     
