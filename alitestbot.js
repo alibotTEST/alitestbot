@@ -34,7 +34,7 @@ password : **${random2}**`);
 
 client.on('message', message => {
   if(!message.channel.guild) return;
-if(message.content.startsWith('$bc')) {
+if(message.content.startsWith('!bc')) {
 if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
 if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
@@ -72,5 +72,110 @@ msg.delete();
 })
 }
 });
+
+
+
+client.on('message', async message => {
+            if(!message.channel.guild) return;
+             if (message.content.startsWith("!")) {
+let args = message.content.split(' ').slice(1).join(' ');
+            let sigMessage = await args;
+            
+            if (sigMessage === "online") {
+                client.user.setStatus("online");
+                message.author.send("Your status was set to online.");
+            }
+            if (sigMessage === "idle") {
+                client.user.setStatus("idle");
+                message.author.send("Your status was set to idle.");
+            }
+            if (sigMessage === "invisible") {
+                client.user.setStatus("invisible");
+                message.author.send("Your status was set to invisible.");
+            }
+            if (sigMessage === "dnd") {
+                client.user.setStatus("dnd");
+                message.author.send("Your status was set to dnd.");
+            }
+            // message.author.send("." + message.content);
+        
+}
+});
+
+
+
+client.on('message', function(message) {
+	const myID = "472880961680572446";
+    let args = message.content.split(" ").slice(1).join(" ");
+    if(message.content.startsWith(prefix + "setname")) {
+		        if(message.author.id !== myID) return;
+            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+        client.user.setUsername(args);
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+           msg.delete(3000);
+          message.delete(3000);
+        });
+    } else if(message.content.startsWith(prefix + "stream")) {
+		        if(message.author.id !== myID) return;
+            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+        client.user.setGame(args , 'https://www.twitch.tv/ali_ar95');
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+           msg.delete(3000);
+          message.delete(3000);
+        });
+    } else if(message.content.startsWith(prefix + "playing")) {
+				        if(message.author.id !== myID) return;
+            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+        client.user.setGame(args);
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+           msg.delete(3000);
+          message.delete(3000);
+        });
+    } else if(message.content.startsWith(prefix + "listen")) {
+				        if(message.author.id !== myID) return;
+            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+        client.user.setActivity(args, {type:'LISTENING'});
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+           msg.delete(3000);
+          message.delete(3000);
+        });
+    } else if(message.content.startsWith(prefix + "watch")) {
+				        if(message.author.id !== myID) return;
+            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+        client.user.setActivity(args, {type:'WATCHING'});
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+           msg.delete(3000);
+          message.delete(3000);
+        });
+    } else if(message.content.startsWith(prefix + "setavatar")) {
+				        if(message.author.id !== myID) return;
+        client.user.setAvatar(args);
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+                if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+           msg.delete(3000);
+          message.delete(3000);
+        });
+    }
+});
+
+
+
+client.on('message', message => {
+    if (message.author.bot) return; 
+ if(message.content == "!help"){
+    
+   message.author.sendMessage(`**
+
+${prefix}bc : ل إرسال رسالة لجمع الاعضاء
+
+${prefix}email : لإنشاء حساب وهمي
+
+ 
+**`)
+    message.channel.send(`✅ | Done | <@${message.author.id}>`)
+  } 
+});
+
+
 
 client.login(process.env.BOT_TOKEN);
